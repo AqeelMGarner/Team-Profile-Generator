@@ -8,7 +8,7 @@ class Employee {
     getElements() {
         this.getName = () => {
             return this.name;
-        };
+        };  
         this.getId = () => {
             return this.id;
         };
@@ -20,6 +20,6 @@ class Employee {
         };
     };
 };
-const employee = new Employee("akz", 1, "hot_head123@hotmail.com"); 
+const employee = new Employee(); 
 console.log(employee);
 module.exports = Employee;
