@@ -15,14 +15,11 @@ class Employee {
         this.getEmail = () => {
             return this.email;
         };
-        this.printInfo =() => {
-            console.log(("Name: ") + (this.getName()));
-        }
         this.getrole = () => {
-            return this.Employee
+            return this.Employee;
         };
     };
 };
-const employee = new Employee("akz", 1, "hot_head123@hotmail.com") 
+const employee = new Employee("akz", 1, "hot_head123@hotmail.com"); 
 console.log(employee);
 module.exports = Employee;

@@ -8,13 +8,13 @@ class Manager extends Employee {
     };
     getElements(){
         this.getrole = () => {
-            return this.Manager
+            return this.Manager;
         };
         this.getName = () => {
-            return this.name
-        }
+            return this.name;
+        };
     };
 };
-const manager = new Manager(14324)
+const manager = new Manager(14324);
 console.log(manager);
 module.exports = Manager;
