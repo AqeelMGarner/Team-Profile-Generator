@@ -2,12 +2,9 @@
 
 ## Description
 
-- What was your motivation?
-- Why did you build this project?
-- What problem does it solve?
-- What did you learn?
+The motivation behind this application was to generate a Web page that display team member's information. The reason why I built this application was to create team profile generator to help developer teams show who's in their team the names, email addresses and more bit of information about them. The problem that my application solves is it gives you a template html file with all the team members information rather than making it on your own. What I learned from the making of this application was when install inquirer the least version is not always going to working on every application. 
 
-## Table of Contents (Optional)
+## Table of Contents 
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -20,11 +17,7 @@ N/A
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
-
-![alt text](assets/images/screenshot.png)
+the usage have been stated in the description but for a visual aid please refer to "assets/images" for screenshots of the appliaction 
 
 ## Credits
 
@@ -32,4 +25,4 @@ N/A
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+Please refer to LICENSE in the repo 
