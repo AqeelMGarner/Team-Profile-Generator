@@ -10,7 +10,7 @@ class Intern extends Employee {
         this.getSchool = () => {
             return this.school;
         };
-        this.getrole = () => {
+        this.getRole = () => {
             return this.Intern;
         };
     };

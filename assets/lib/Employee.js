@@ -15,7 +15,7 @@ class Employee {
         this.getEmail = () => {
             return this.email;
         };
-        this.getrole = () => {
+        this.getRole = () => {
             return this.Employee;
         };
     };
