@@ -49,7 +49,6 @@ let addAnEngineer = ({
     message: "Enter Github username",
     name: "engineerGithub",
 });
-
 let addAnIntern = ({
     type: "input",
     message: "Enter Intern's name",
@@ -70,7 +69,6 @@ let addAnIntern = ({
     message: "Enter Intern's school",
     name: "internSchool"
 });
-
 let finishBuildingTheTeam = ({
     type: "confirm",
     message: "Would you like to exit",
@@ -104,11 +102,19 @@ inquirer
         name: "menu",
         message: "Menu pick next step",
         choices: ["addAnEngineer", "addAnIntern", "finishBuildingTheTeam"],
+        default: "finishBuildingTheTeam"
     }
-.then()
-
-]);
-
-
-//let prompt = inquirer.createPromptModule (questions)
-//console.log(prompt);
+])   
+.then((response) => {
+switch (response.menu) {
+    case "addAnEngineer":
+        inquirer.prompt(addAnEngineer)
+        break;
+    case "addAnIntern":
+        inquirer.prompt(addAnIntern)
+        break;
+    case "finishBuildingTheTeam":
+        inquirer.prompt(finishBuildingTheTeam)
+        break;
+    default: console.log("pick next step");                
+}});
