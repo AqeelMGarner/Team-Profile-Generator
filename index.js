@@ -29,7 +29,7 @@ const manager = {
 };
 
 
-let addAnEngineer = ({
+let addAnEngineer = [{
     type: "input",
     message: "Enter Engineer's Name",
     name: "engineerName",
@@ -48,8 +48,8 @@ let addAnEngineer = ({
     type: "input",
     message: "Enter Github username",
     name: "engineerGithub",
-});
-let addAnIntern = ({
+}];
+let addAnIntern = [{
     type: "input",
     message: "Enter Intern's name",
     name: "internName",
@@ -68,12 +68,12 @@ let addAnIntern = ({
     type: "input", 
     message: "Enter Intern's school",
     name: "internSchool"
-});
-let finishBuildingTheTeam = ({
+}];
+let finishBuildingTheTeam = [{
     type: "confirm",
     message: "Would you like to exit",
     name: "exit"
-});
+}];
 
 inquirer
 .prompt ([
