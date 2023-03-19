@@ -114,7 +114,21 @@ switch (response.menu) {
         inquirer.prompt(addAnIntern)
         break;
     case "finishBuildingTheTeam":
-        inquirer.prompt(finishBuildingTheTeam)
+        const teamPage = render.team;
+        fs.writeFile("team.html", html, (err) => {
+            if (err) throw err;
+            console.log("HTML file created successfully!");
+        }); 
         break;
     default: console.log("pick next step");                
-}});
+}},
+(response) => {
+    let teamArray = [];
+    const manager = new Manager(response.name, response.employeeId, response.email, response.officeNumber);
+    teamArray.push(manager)
+    const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+    teamArray.push(engineer);
+    const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool)
+    teamArray.push(intern)
+    
+});
