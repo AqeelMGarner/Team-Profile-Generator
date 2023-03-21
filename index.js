@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./assets/src/page-template");
 const Employee = require("./assets/lib/Employee");
+const { default: Choices } = require("inquirer/lib/objects/choices");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
@@ -28,107 +29,139 @@ const manager = {
     officeNumber: Manager.officeNumber,
 };
 
+const teamArray = [];
 
-let addAnEngineer = [{
-    type: "input",
-    message: "Enter Engineer's Name",
-    name: "engineerName",
-},
-{
-    type: "number",
-    message: "Enter ID",
-    name: "engineerId",
-},
-{
-    type: "input",
-    message: "Enter Email",
-    name: "engineerEmail",
-},
-{
-    type: "input",
-    message: "Enter Github username",
-    name: "engineerGithub",
-}];
-let addAnIntern = [{
-    type: "input",
-    message: "Enter Intern's name",
-    name: "internName",
-},
-{
-    type: "number",
-    message: "Enter Intern's id",
-    name: "internId",
-},
-{
-    type: "input",
-    message: "Enter Intern's email",
-    name: "internEmail",
-},
-{
-    type: "input", 
-    message: "Enter Intern's school",
-    name: "internSchool"
-}];
-let finishBuildingTheTeam = [{
-    type: "confirm",
-    message: "Would you like to exit",
-    name: "exit"
-}];
-
-inquirer
-.prompt ([
-    {
-        type: "input",
-        message: "Enter Name",
-        name: "name",
-    },
-    {
-        type: "number",
-        message: "Enter Employee ID",
-        name: "employeeId",
-    },
-    {
-        type: "input",
-        message: "Enter Email address",
-        name: "email",
-    },
-    {
-        type: "number",
-        message: "Enter Office number",
-        name: "officeNumber",
-    },
+inquirer.prompt([
     {
         type: "list",
         name: "menu",
-        message: "Menu pick next step",
-        choices: ["addAnEngineer", "addAnIntern", "finishBuildingTheTeam"],
-        default: "finishBuildingTheTeam"
+        message: "Would you like create a team or exit application?",
+        choices: [
+            "Create Team",
+            "Finish building the team, exit."
+        ]
     }
-])   
-.then((response) => {
-switch (response.menu) {
-    case "addAnEngineer":
-        inquirer.prompt(addAnEngineer)
-        break;
-    case "addAnIntern":
-        inquirer.prompt(addAnIntern)
-        break;
-    case "finishBuildingTheTeam":
-        const teamPage = render.team;
-        fs.writeFile("team.html", html, (err) => {
-            if (err) throw err;
-            console.log("HTML file created successfully!");
-        }); 
-        break;
-    default: console.log("pick next step");                
-}},
-(response) => {
-    let teamArray = [];
-    const manager = new Manager(response.name, response.employeeId, response.email, response.officeNumber);
-    teamArray.push(manager)
-    const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
-    teamArray.push(engineer);
-    const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool)
-    teamArray.push(intern)
-    
+]).then((response) => {
+    switch (response.menu) {
+        case "Create Team":
+            inquirer.prompt([
+                {
+                    type: "input",
+                    message: "Enter manager's name",
+                    name: "name",
+                },
+                {
+                    type: "number",
+                    message: "Enter manager's id",
+                    name: "managerId",
+                },
+                {
+                    type: "input",
+                    message: "Enter manager's email address",
+                    name: "email",
+                },
+                {
+                    type: "list",
+                    name: "employeeRole",
+                    message: "Choose employee role",
+                    choices: [
+                        "Engineer",
+                        "Intern",
+                        "Manager",
+                    ]
+                }
+            ]).then((answers) => {
+                switch (answers.employeeRole) {
+                    case "Engineer":
+                        inquirer.prompt([
+                            {
+                                type: "input",
+                                message: "Enter engineer's name",
+                                name: "engineerName",
+                            },
+                            {
+                                type: "number",
+                                message: "Enter engineer's id",
+                                name: "engineerId",
+                            },
+                            {
+                                type: "input",
+                                message: "Enter engineer's email address",
+                                name: "engineerEmail",
+                            },
+                            {
+                                type: "input",
+                                message: "Enter github username",
+                                name: "github",
+                            },
+                        ]).then((engineerAnswers) => {
+                            const engineer = new Engineer(
+                                engineerAnswers.engineerName,
+                                engineerAnswers.engineerId,
+                                engineerAnswers.engineerEmail,
+                                engineerAnswers.github,
+                            );
+                            teamArray.push(engineer);
+                            console.log("Engineer has been added to team");
+                        });
+                        break;
+                    case "Intern":
+                        inquirer.prompt([
+                            {
+                                type: "input",
+                                message: "Enter intern's name",
+                                name: "internName",
+                            },
+                            {
+                                type: "number",
+                                message: "Enter intern's id",
+                                name: "internId",
+                            },
+                            {
+                                type: "input",
+                                message: "Enter intern's email address",
+                                name: "internEmail",
+                            },
+                            {
+                                type: "input",
+                                message: "Enter school name",
+                                name: "school",
+                            },
+                        ]).then((internAnswers) => {
+                            const intern = new Intern(
+                                internAnswers.internName,
+                                internAnswers.internId,
+                                internAnswers.internEmail,
+                                internAnswers.school,
+                            );
+                            teamArray.push(intern);
+                            console.log("Intern has been added to team");
+                        });
+                        break;
+                    case "Manager":
+                        inquirer.prompt([
+                            {
+                                type: "number",
+                                message: "Enter office number",
+                                name: "officeNumber",
+                            },
+                        ]).then((managerAnswers) => {
+                            const manager = new Manager(
+                                answers.name,
+                                answers.id,
+                                answers.internEmail,
+                                managerAnswers.officeNumber,
+                            );
+                            teamArray.push(intern);
+                            console.log("Manager has been added to team");
+                        });
+                        break;
+                }
+            });
+            break;
+        case "Finish building the team, exit.":
+
+            console.log("HTML page has been completed, please refer to team.html to see your team members");
+            break;
+    };
 });

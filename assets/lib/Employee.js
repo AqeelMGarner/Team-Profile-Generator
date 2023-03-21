@@ -5,20 +5,20 @@ class Employee {
         this.id = id; 
         this.email = email;
     }
-    getElements() {
-        this.getName = () => {
+    // getElements() {
+        getName = () => {
             return this.name;
         };  
-        this.getId = () => {
+        getId = () => {
             return this.id;
         };
-        this.getEmail = () => {
+        getEmail = () => {
             return this.email;
         };
-        this.getRole = () => {
-            return this.Employee;
+        getRole = () => {
+            return "Employee"
         };
-    };
+    // };
 };
 const employee = new Employee(); 
 console.log(employee);
