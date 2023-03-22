@@ -1,8 +1,8 @@
 // creates the team
-const generateTeam = team => {
+const generateTeam = function team() {
 
     // creates the manager html
-    const generateManager = manager => {
+    const generateManager = function manager() {
         return `
         <div class="card employee-card">
         <div class="card-header">
@@ -21,7 +21,7 @@ const generateTeam = team => {
     };
 
     // creates the html for engineers
-    const generateEngineer = engineer => {
+    const generateEngineer = function engineer() {
         return `
         <div class="card employee-card">
     <div class="card-header">
@@ -40,7 +40,7 @@ const generateTeam = team => {
     };
 
     // creates the html for interns
-    const generateIntern = intern => {
+    const generateIntern = function intern() {
         return `
         <div class="card employee-card">
     <div class="card-header">
@@ -57,7 +57,7 @@ const generateTeam = team => {
 </div>
         `;
     };
-
+    
     const html = [];
 
     html.push(team
@@ -77,10 +77,9 @@ const generateTeam = team => {
 
     return html.join("");
 
-}
-
+};
 // exports function to generate entire page
-module.exports = team => {
+const teamPage = function teamPage() {
 
     return `
     <!DOCTYPE html>
@@ -108,7 +107,7 @@ module.exports = team => {
     <div class="container">
         <div class="row">
             <div class="team-area col-12 d-flex justify-content-center">
-                ${generateTeam(team)}
+                ${generateTeam}
             </div>
         </div>
     </div>
@@ -116,3 +115,4 @@ module.exports = team => {
 </html>
     `;
 };
+module.exports = teamPage;
