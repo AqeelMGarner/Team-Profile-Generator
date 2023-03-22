@@ -11,6 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const teamPage = require("./assets/src/page-template");
 const Employee = require("./assets/lib/Employee");
 const { default: Choices } = require("inquirer/lib/objects/choices");
+const { error } = require("console");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
@@ -158,6 +159,9 @@ function buildRestOfTheTeam() {
 function createHTMLFromTeamArray(teamArray) {
     console.log("In createHTMLFromTeamArray function");
     console.log("TeamArray = ", teamArray);
-    console.log(teamPage());
-    
+    console.log(teamPage(teamArray));
+    fs.writeFile("team.html", teamPage(teamArray), (error) => {
+        error ? console.error(error) : console.log("view team Page")
+    });
+
 }
